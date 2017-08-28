@@ -361,8 +361,8 @@ def test(data_loader, net, get_pbb, save_dir, config):
 
         output0 = np.concatenate(outputlist0,0)
         output1 = np.concatenate(outputlist1,0)
-        output2 = np.concatenate(outputlist1,0)
-        output3 = np.concatenate(outputlist1,0)
+        output2 = np.concatenate(outputlist2,0)
+        output3 = np.concatenate(outputlist3,0)
 
         output0 = split_comber.combine(output0, stride = 2, nzhw=nzhw)
         output1 = split_comber.combine(output1, stride = 4, nzhw=nzhw)

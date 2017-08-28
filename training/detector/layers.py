@@ -304,7 +304,7 @@ class GetPBB(object):
         self.stride = config['stride_sets']
         self.anchors = np.asarray(config['anchors'])
 
-    def __call__(self, output,stride_id = None,thresh = -3, ismask=False):
+    def __call__(self, output,stride_id = None,thresh = 0.5, ismask=False):
         stride = self.stride[stride_id]
         anchors = self.anchors[stride_id]
         output = np.copy(output)
