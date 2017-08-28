@@ -314,16 +314,16 @@ class GetPBB(object):
         oh = np.arange(offset, offset + stride * (output_size[1] - 1) + 1, stride)
         ow = np.arange(offset, offset + stride * (output_size[2] - 1) + 1, stride)
         
-        output[:, :, :, :, 1] = oz.reshape((-1, 1, 1, 1)) + output[:, :, :, :, 1] * anchors
-        output[:, :, :, :, 2] = oh.reshape((1, -1, 1, 1)) + output[:, :, :, :, 2] * anchors
-        output[:, :, :, :, 3] = ow.reshape((1, 1, -1, 1)) + output[:, :, :, :, 3] * anchors
-        output[:, :, :, :, 4] = np.exp(output[:, :, :, :, 4]) * anchors
+        output[:, :, :, 1] = oz.reshape((-1, 1, 1)) + output[:, :, :, 1] * anchors
+        output[:, :, :, 2] = oh.reshape((1, -1, 1)) + output[:, :, :, 2] * anchors
+        output[:, :, :, 3] = ow.reshape((1, 1, -1)) + output[:, :, :, 3] * anchors
+        output[:, :, :, 4] = np.exp(output[:, :, :, 4]) * anchors
         mask = output[..., 0] > thresh
-        xx,yy,zz,aa = np.where(mask)
+        xx,yy,zz = np.where(mask)
         
-        output = output[xx,yy,zz,aa]
+        output = output[xx,yy,zz]
         if ismask:
-            return output,[xx,yy,zz,aa]
+            return output,[xx,yy,zz]
         else:
             return output
 

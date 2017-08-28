@@ -114,9 +114,9 @@ class DataBowl3Detector(Dataset):
             nz, nh, nw = imgs.shape[1:]
 
             i = 1
-            pz = int(np.ceil(float(nz) / self.stride[i])) * self.stride
-            ph = int(np.ceil(float(nh) / self.stride[i])) * self.stride
-            pw = int(np.ceil(float(nw) / self.stride[i])) * self.stride
+            pz = int(np.ceil(float(nz) / self.stride)) * self.stride
+            ph = int(np.ceil(float(nh) / self.stride)) * self.stride
+            pw = int(np.ceil(float(nw) / self.stride)) * self.stride
             imgs = np.pad(imgs, [[0,0],[0, pz - nz], [0, ph - nh], [0, pw - nw]], 'constant',constant_values = self.pad_value)
 
             xx,yy,zz = np.meshgrid(np.linspace(-0.5,0.5,imgs.shape[1]/self.stride),
